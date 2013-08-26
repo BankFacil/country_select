@@ -23,17 +23,17 @@ module ActionView
 
       let(:selected_us_option) do
         if defined?(Tags::Base)
-          content_tag(:option, 'United States', :selected => :selected, :value => "United States")
+          content_tag(:option, 'VENEZUELANA', :selected => :selected, :value => "VENEZUELANA")
         else
-          "<option value=\"United States\" selected=\"selected\">United States</option>"
+          "<option value=\"VENEZUELANA\" selected=\"selected\">VENEZUELANA</option>"
         end
       end
 
       let(:selected_iso_us_option) do
         if defined?(Tags::Base)
-          content_tag(:option, 'United States', :selected => :selected, :value => 'us')
+          content_tag(:option, 'VENEZUELANA', :selected => :selected, :value => '159')
         else
-          "<option value=\"us\" selected=\"selected\">United States</option>"
+          "<option value=\"159\" selected=\"selected\">VENEZUELANA</option>"
         end
       end
 
@@ -60,27 +60,27 @@ module ActionView
           end
 
           it "selects the value of country_name" do
-            walrus.country_name = 'United States'
+            walrus.country_name = 'VENEZUELANA'
             t = builder.country_select(:country_name)
             t.should include(selected_us_option)
           end
         end
 
         describe "#priority_countries" do
-          let(:tag) { builder.country_select(:country_name, ['United States']) }
+          let(:tag) { builder.country_select(:country_name, ['VENEZUELANA']) }
 
           it "puts the countries at the top" do
-            tag.should include("#{select_tag}<option value=\"United States")
+            tag.should include("#{select_tag}<option value=\"VENEZUELANA")
           end
 
           it "inserts a divider" do
-            tag.should include(">United States</option><option value=\"\" disabled=\"disabled\">-------------</option>")
+            tag.should include(">VENEZUELANA</option><option value=\"\" disabled=\"disabled\">-------------</option>")
           end
 
           it "does not mark two countries as selected" do
-            walrus.country_name = "United States"
+            walrus.country_name = "VENEZUELANA"
             str = <<-EOS.strip
-              </option>\n<option value="United States" selected="selected">United States</option>
+              </option>\n<option value="VENEZUELANA" selected="selected">VENEZUELANA</option>
             EOS
             tag.should_not include(str)
           end
@@ -102,27 +102,27 @@ module ActionView
           end
 
           it "selects the value of country_name" do
-            walrus.country_name = 'us'
+            walrus.country_name = '159'
             t = builder.country_select(:country_name, nil, :iso_codes => true)
             t.should include(selected_iso_us_option)
           end
         end
 
         describe "#priority_countries" do
-          let(:tag) { builder.country_select(:country_name, ['us'], :iso_codes => true) }
+          let(:tag) { builder.country_select(:country_name, [159], :iso_codes => true) }
 
           it "puts the countries at the top" do
-            tag.should include("#{select_tag}<option value=\"us")
+            tag.should include("#{select_tag}<option value=\"159")
           end
 
           it "inserts a divider" do
-            tag.should include(">United States</option><option value=\"\" disabled=\"disabled\">-------------</option>")
+            tag.should include(">VENEZUELANA</option><option value=\"\" disabled=\"disabled\">-------------</option>")
           end
 
           it "does not mark two countries as selected" do
-            walrus.country_name = "us"
+            walrus.country_name = "159"
             str = <<-EOS.strip
-              </option>\n<option value="us" selected="selected">United States</option>
+              </option>\n<option value="159" selected="selected">VENEZUELANA</option>
             EOS
             tag.should_not include(str)
           end
